@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=2.0">
+    <title>Kushagra Soni | Digital Portfolio</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-color: #1a1a2e; /* Deep Navy */
+            --primary-color: #16213e; /* Darker Blue */
+            --secondary-color: #0f3460; /* Another shade of blue */
+            --accent-color: #e94560; /* Striking Red/Pink */
+            --text-color: #e0e0e0; /* Light Gray */
+            --card-bg: #1e1e3f;
+            --font-family: 'Poppins', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 0 2rem;
+        }
+
+        h1, h2, h3 {
+            font-weight: 600;
+        }
+
+        section {
+            padding: 80px 0;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Header --- */
+        .navbar {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            padding: 1rem 0;
+            background: rgba(26, 26, 46, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-color);
+            text-decoration: none;
+        }
+        
+        .navbar-logo span {
+             background: linear-gradient(90deg, var(--accent-color), #ff7e5f);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-links li a {
+            color: var(--text-color);
+            text-decoration: none;
+            margin-left: 25px;
+            font-weight: 400;
+            position: relative;
+            padding-bottom: 5px;
+        }
+        
+        .nav-links li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links li a:hover::after {
+            width: 100%;
+        }
+
+        /* --- Hero Section --- */
+        #hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background-color: var(--primary-color);
+            padding: 0 2rem;
+        }
+        
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero-content .subtitle {
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .hero-content p {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--accent-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(233, 69, 96, 0.3);
+        }
+
+        /* --- Section Title --- */
+        .section-title {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent-color);
+            border-radius: 2px;
+        }
+        
+        /* --- Card Styles for Sections --- */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .card i {
+            font-size: 3rem;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+        }
+        
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        .card p {
+            flex-grow: 1;
+        }
+
+        /* --- Education Timeline --- */
+        .timeline { position: relative; max-width: 800px; margin: 0 auto; }
+        .timeline::after { content: ''; position: absolute; width: 3px; background: var(--accent-color); top: 0; bottom: 0; left: 50%; margin-left: -1.5px; opacity: 0.3; }
+        .timeline-container { padding: 10px 40px; position: relative; width: 50%; }
+        .timeline-container.left { left: 0; }
+        .timeline-container.right { left: 50%; }
+        .timeline-container::after { content: ''; position: absolute; width: 20px; height: 20px; right: -10px; top: 15px; background: var(--bg-color); border: 4px solid var(--accent-color); border-radius: 50%; z-index: 1; }
+        .right::after { left: -10px; }
+        .timeline-content { padding: 20px; background: var(--card-bg); border-radius: 8px; border-left: 4px solid var(--accent-color); }
+        .timeline-content h3 { font-size: 1.2rem; }
+        .timeline-content .date { font-size: 0.9rem; font-style: italic; opacity: 0.7; }
+
+        /* --- Certificate Card Styles --- */
+        .certificate-card .issuer { color: var(--text-color); opacity: 0.7; font-size: 0.9rem; margin-bottom: 15px; }
+        .card-btn { display: inline-block; margin-top: auto; padding: 8px 20px; border: 2px solid var(--accent-color); color: var(--accent-color); text-decoration: none; border-radius: 50px; font-weight: 600; transition: background-color 0.3s, color 0.3s; }
+        .card-btn:hover { background-color: var(--accent-color); color: #fff; }
+        .card-btn.disabled { opacity: 0.6; cursor: not-allowed; }
+        .card-btn.disabled:hover { background-color: transparent; color: var(--accent-color); }
+
+        /* --- Skills --- */
+        .skills-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; max-width: 800px; margin: 0 auto; }
+        .skill-tag { background-color: var(--secondary-color); padding: 10px 20px; border-radius: 50px; font-weight: 500; transition: background-color 0.3s, transform 0.3s; }
+        .skill-tag:hover { background-color: var(--accent-color); transform: scale(1.1); }
+        
+        /* --- Gallery Section --- */
+        #gallery { background: var(--primary-color); }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .gallery-item { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.2); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .gallery-item:hover { transform: scale(1.03); box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
+        .gallery-item img { width: 100%; height: 250px; object-fit: cover; display: block; transition: transform 0.3s ease; }
+        .gallery-item img:hover { transform: scale(1.1); }
+        .gallery-item-caption { padding: 15px; font-size: 0.95rem; text-align: center; color: var(--text-color); }
+
+        /* --- Contact --- */
+        #contact .container { text-align: center; max-width: 600px; }
+        .contact-icons a { font-size: 2rem; color: var(--text-color); margin: 0 20px; transition: color 0.3s ease, transform 0.3s ease; }
+        .contact-icons a:hover { color: var(--accent-color); transform: scale(1.2); }
+        
+        /* --- Footer --- */
+        footer { padding: 2rem 0; text-align: center; background: var(--primary-color); border-top: 1px solid rgba(255, 255, 255, 0.1); }
+
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="container">
+            <a href="#hero" class="navbar-logo">KUSHAGRA<span>.</span></a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#achievements">Achievements</a></li>
+                <li><a href="#certifications">Certifications</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <section id="hero">
+        <div class="hero-content">
+            <h1>Kushagra Soni</h1>
+            <p class="subtitle">BBA in Digital Business & Entrepreneurship</p>
+            <p>A driven and analytical IIM Bangalore candidate with a passion for leadership, innovation, and creating a positive impact.</p>
+            <a href="#contact" class="btn">Get in Touch</a>
+        </div>
+    </section>
+
+    <main>
+        <section id="about" class="container">
+            <h2 class="section-title">Strengths</h2>
+            <div class="card-grid">
+                <div class="card">
+                    <i class="fas fa-users"></i>
+                    <h3>Leadership</h3>
+                    <p>Proven leadership skills developed through active participation in diverse academic and extracurricular activities.</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-lightbulb"></i>
+                    <h3>Problem-Solving</h3>
+                    <p>An adaptable and creative thinker capable of addressing challenges with innovative and effective solutions.</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-clock"></i>
+                    <h3>Time Management</h3>
+                    <p>Efficiently manages time and resources, demonstrated through balancing demanding academic and extracurricular schedules.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="education" class="container">
+            <h2 class="section-title">Education Journey</h2>
+            <div class="timeline">
+                <div class="timeline-container left">
+                    <div class="timeline-content">
+                        <h3>Bachelor of Business Administration (BBA)</h3>
+                        <p>Indian Institute of Management Bangalore</p>
+                        <p class="date">2024 - 2027</p>
+                    </div>
+                </div>
+                <div class="timeline-container right">
+                    <div class="timeline-content">
+                        <h3>Senior Secondary School</h3>
+                        <p>Jaswant V.B.S senior secondary school</p>
+                        <p class="date">2022 - 2024</p>
+                    </div>
+                </div>
+                <div class="timeline-container left">
+                    <div class="timeline-content">
+                        <h3>Secondary School</h3>
+                        <p>Holy Mother Sec School</p>
+                        <p class="date">2021 - 2022</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="achievements" class="container">
+            <h2 class="section-title">Achievements</h2>
+            <div class="card-grid">
+                <div class="card">
+                    <i class="fas fa-trophy"></i>
+                    <h3>McKinsey Forward Program</h3>
+                    <p>Accepted into the highly selective 2025 cohort to enhance leadership and digital transformation skills.</p>
+                </div>
+
+                <div class="card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Social Media Growth Challenge</h3>
+                    <p>Led a team as the operational head for a 21-day project to build a social media account, "the.noiria," achieving over 30,000+ organic views.</p>
+                </div>
+                
+                <div class="card">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h3>Prestigious IIM Admission</h3>
+                    <p>Secured admission to IIM Sirmaur and IIM Bangalore, choosing the latter for broader academic exposure.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="certifications" class="container">
+            <h2 class="section-title">Certifications</h2>
+            <div class="card-grid">
+                 <div class="card certificate-card">
+                    <i class="fas fa-award"></i>
+                    <h3>McKinsey Forward Program</h3>
+                    <p class="issuer">Issued by McKinsey</p>
+                    <p>The McKinsey Forward Program is a virtual learning journey designed to build practical, real-world skills for young professionals. It focuses on developing leadership skills, mastering structured problem-solving, and enhancing digital capabilities.</p>
+                    <a class="card-btn disabled">Currently Pursuing</a>
+                </div>
+                <div class="card certificate-card">
+                    <i class="fas fa-award"></i>
+                    <h3>Market Controllers</h3>
+                    <p class="issuer">Issued by Goldman Sachs</p>
+                    <p>Working on a virtual experience program focused on market analysis and essential control functions within finance.</p>
+                    <a class="card-btn disabled">Currently Pursuing</a>
+                </div>
+                <div class="card certificate-card">
+                    <i class="fas fa-award"></i>
+                    <h3>London Market Claims Operations</h3>
+                    <p class="issuer">Issued by London Insurance Life</p>
+                    <p>Completed the Forage job simulation, gaining hands-on experience in the insurance sector. Developed practical skills in core industry processes, including claims operations and a review of the First Notice of Loss process.</p>
+                    <a href="https://uploads.onecompiler.io/43f9nhvs7/43ztxsfna/LONDON%20INSURANCE%20CLAIM_page-0001.jpg" target="_blank" class="card-btn">View Credential</a>
+                </div>
+                <div class="card certificate-card">
+                    <i class="fas fa-award"></i>
+                    <h3>Data Visualisation: Empowering Business</h3>
+                    <p class="issuer">Issued by TATA</p>
+                    <p>Gained practical experience in framing business scenarios, selecting appropriate visuals, and communicating analytical insights to drive business decisions through the TATA Forage virtual experience program.</p>
+                    <a href="https://uploads.onecompiler.io/43f9nhvs7/43ztxsfna/TATA%20forage!_page-0001.jpg" target="_blank" class="card-btn">View Credential</a>
+                </div>
+                <div class="card certificate-card">
+                    <i class="fas fa-award"></i>
+                    <h3>Selling Online</h3>
+                    <p class="issuer">Issued by HP LIFE</p>
+                    <p>Completed HP LIFE’s Selling Online course, gaining practical knowledge in online sales optimization, marketing strategies, product listing creation, and customer service enhancement (June 2025).</p>
+                    <a href="https://uploads.onecompiler.io/43f9nhvs7/43ztxsfna/TATA%20SELLING%20ONLINE.jpg" target="_blank" class="card-btn">View Credential</a>
+                </div>
+                 <div class="card certificate-card">
+                    <i class="fas fa-award"></i>
+                    <h3>Data Science & Analytics</h3>
+                    <p class="issuer">Issued by HP LIFE</p>
+                    <p>Completed HP LIFE’s Data Science & Analytics course, learning key analytics tools, data-driven decision-making techniques, and business insights development for digital growth (June 2025).</p>
+                    <a href="https://uploads.onecompiler.io/43f9nhvs7/43ztxsfna/TATA%20DATA%20ANALYTICS.jpg" target="_blank" class="card-btn">View Credential</a>
+                </div>
+                <div class="card certificate-card">
+                    <i class="fas fa-award"></i>
+                    <h3>PepsiCo Pep Sales Star Workshop</h3>
+                    <p class="issuer">Issued by Pepsico</p>
+                    <p>Actively participated in the exclusive Pep Sales Star Workshop hosted by PepsiCo India, gaining valuable, practical insights into the FMCG industry and PepsiCo's core sales operations.</p>
+                    <a href="https://uploads.onecompiler.io/43f9nhvs7/43ztxsfna/PEPSICO.jpg" target="_blank" class="card-btn">View Credential</a>
+                </div>
+            </div>
+        </section>
+        
+        <section id="skills" class="container">
+            <h2 class="section-title">Core Skills</h2>
+            <div class="skills-container">
+                <div class="skill-tag">Leadership</div> <div class="skill-tag">Teamwork</div> <div class="skill-tag">Critical Thinking</div> <div class="skill-tag">Problem-Solving</div> <div class="skill-tag">Time Management</div> <div class="skill-tag">Adaptability</div> <div class="skill-tag">Interpersonal Skills</div> <div class="skill-tag">Microsoft Word</div> <div class="skill-tag">Excel Data Visualisation</div> <div class="skill-tag">HTML</div>
+            </div>
+        </section>
+
+        <section id="gallery" class="container">
+            <h2 class="section-title">My Journey in Pictures</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://uploads.onecompiler.io/43f9nhvs7/43ztxsfna/IIT%20DELHI.jpg" alt="IIT Delhi Immersion Trip">
+                    <div class="gallery-item-caption">Exploring innovation during my college immersion trip to IIT Delhi.</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://uploads.onecompiler.io/43f9nhvs7/43ztxsfna/Screenshot%202025-10-16%20225130.png" alt="Entrepreneurship Challenge">
+                    <div class="gallery-item-caption">Our team's product for the entrepreneurship course: starting a business with just ₹0!</div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="contact" class="container">
+            <h2 class="section-title">Let's Connect</h2>
+            <p style="margin-bottom: 2rem;">I am actively seeking opportunities where I can apply my skills and contribute to a forward-thinking team. Feel free to reach out!</p>
+            <div class="contact-icons">
+                <a href="mailto:Kushagrasoni26@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                <a href="https://www.linkedin.com/in/kushagra-soni-533181323" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 Kushagra Soni </p>
+    </footer>
+
+    <script>
+        const sections = document.querySelectorAll('section');
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        sections.forEach(section => observer.observe(section));
+    </script>
+
+</body>
+</html>
